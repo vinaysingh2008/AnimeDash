@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeDash - Unleash the Anime World</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="AnimeDash Logo" class="logo-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#genres">Genres</a></li>
+                <li><a href="#new-releases">New Releases</a></li>
+                <li><a href="#top-picks">Top Picks</a></li>
+            </ul>
+        </nav>
+        <div class="search">
+            <input type="text" placeholder="Search anime...">
+            <span class="search-icon">🔍</span>
+        </div>
+        <div class="profile">👤</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('assets/images/hero-bg.jpg');">
+        <div class="hero-content">
+            <h1>Unleash the World of Anime, One Dash at a Time</h1>
+            <button onclick="startWatching()">START WATCHING NOW</button>
+        </div>
+    </section>
+
+    <!-- Featured Anime Section -->
+    <section class="featured">
+        <h2>Featured Anime</h2>
+        <div class="featured-grid">
+            <div class="anime-card">
+                <img src="assets/images/anime1.jpg" alt="Anime 1">
+                <p>Anime Title 1</p>
+                <button onclick="watchAnime('Anime Title 1')">Watch Now</button>
+            </div>
+            <div class="anime-card">
+                <img src="assets/images/anime2.jpg" alt="Anime 2">
+                <p>Anime Title 2</p>
+                <button onclick="watchAnime('Anime Title 2')">Watch Now</button>
+            </div>
+            <div class="anime-card">
+                <img src="assets/images/anime3.jpg" alt="Anime 3">
+                <p>Anime Title 3</p>
+                <button onclick="watchAnime('Anime Title 3')">Watch Now</button>
+            </div>
+            <div class="anime-card">
+                <img src="assets/images/anime4.jpg" alt="Anime 4">
+                <p>Anime Title 4</p>
+                <button onclick="watchAnime('Anime Title 4')">Watch Now</button>
+            </div>
+            <div class="anime-card">
+                <img src="assets/images/anime5.jpg" alt="Anime 5">
+                <p>Anime Title 5</p>
+                <button onclick="watchAnime('Anime Title 5')">Watch Now</button>
+            </div>
+            <div class="anime-card">
+                <img src="assets/images/anime6.jpg" alt="Anime 6">
+                <p>Anime Title 6</p>
+                <button onclick="watchAnime('Anime Title 6')">Watch Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Anime Library Section -->
+    <section class="anime-library">
+        <h2>Anime Library</h2>
+        <div class="library-grid">
+            <div class="anime-item">
+                <h3>Naruto</h3>
+                <button onclick="toggleEpisodes('naruto')">View Episodes</button>
+                <ul id="naruto-episodes" class="episodes-list" style="display: none;">
+                    <li><a href="#" onclick="watchEpisode('Naruto', 'Episode 1')">Episode 1</a></li>
+                    <li><a href="#" onclick="watchEpisode('Naruto', 'Episode 2')">Episode 2</a></li>
+                    <li><a href="#" onclick="watchEpisode('Naruto', 'Episode 3')">Episode 3</a></li>
+                    <li><a href="#" onclick="watchEpisode('Naruto', 'Episode 4')">Episode 4</a></li>
+                    <li><a href="#" onclick="watchEpisode('Naruto', 'Episode 5')">Episode 5</a></li>
+                </ul>
+            </div>
+            <div class="anime-item">
+                <h3>Attack on Titan</h3>
+                <button onclick="toggleEpisodes('aot')">View Episodes</button>
+                <ul id="aot-episodes" class="episodes-list" style="display: none;">
+                    <li><a href="#" onclick="watchEpisode('Attack on Titan', 'Episode 1')">Episode 1</a></li>
+                    <li><a href="#" onclick="watchEpisode('Attack on Titan', 'Episode 2')">Episode 2</a></li>
+                    <li><a href="#" onclick="watchEpisode('Attack on Titan', 'Episode 3')">Episode 3</a></li>
+                    <li><a href="#" onclick="watchEpisode('Attack on Titan', 'Episode 4')">Episode 4</a></li>
+                </ul>
+            </div>
+            <div class="anime-item">
+                <h3>One Piece</h3>
+                <button onclick="toggleEpisodes('onepiece')">View Episodes</button>
+                <ul id="onepiece-episodes" class="episodes-list" style="display: none;">
+                    <li><a href="#" onclick="watchEpisode('One Piece', 'Episode 1')">Episode 1</a></li>
+                    <li><a href="#" onclick="watchEpisode('One Piece', 'Episode 2')">Episode 2</a></li>
+                    <li><a href="#" onclick="watchEpisode('One Piece', 'Episode 3')">Episode 3</a></li>
+                    <li><a href="#" onclick="watchEpisode('One Piece', 'Episode 4')">Episode 4</a></li>
+                    <li><a href="#" onclick="watchEpisode('One Piece', 'Episode 5')">Episode 5</a></li>
+                    <li><a href="#" onclick="watchEpisode('One Piece', 'Episode 6')">Episode 6</a></li>
+                </ul>
+            </div>
+            <div class="anime-item">
+                <h3>My Hero Academia</h3>
+                <button onclick="toggleEpisodes('mha')">View Episodes</button>
+                <ul id="mha-episodes" class="episodes-list" style="display: none;">
+                    <li><a href="#" onclick="watchEpisode('My Hero Academia', 'Episode 1')">Episode 1</a></li>
+                    <li><a href="#" onclick="watchEpisode('My Hero Academia', 'Episode 2')">Episode 2</a></li>
+                    <li><a href="#" onclick="watchEpisode('My Hero Academia', 'Episode 3')">Episode 3</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
