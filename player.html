@@ -3,70 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AnimeDash - Player</title>
+  <title>AnimeDash - Watch Anime Free</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { background-color: #0e0e0e; color: #fff; font-family: 'Poppins', sans-serif; padding: 20px; }
-    .container { max-width: 1000px; margin: auto; }
-    .title { font-size: 28px; margin-bottom: 20px; color: #00d8ff; }
-    iframe { width: 100%; height: 500px; border: none; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-    .episode-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .ep-btn { background-color: #1a1a1a; padding: 10px 16px; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
-    .ep-btn:hover { background-color: #00d8ff; color: #000; }
+    body {
+      margin: 0;
+      background-color: #0e0e0e;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #121212;
+      border-bottom: 2px solid #00d8ff;
+    }
+    header img {
+      width: 120px;
+      height: auto;
+    }
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      color: #00d8ff;
+      margin-top: 10px;
+    }
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .anime-card {
+      background-color: #1c1c1c;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .anime-card:hover {
+      transform: scale(1.05);
+    }
+    .anime-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    .anime-card h3 {
+      margin: 10px;
+      font-size: 18px;
+      color: #00d8ff;
+    }
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #00d8ff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="title" id="animeTitle">Loading...</div>
-    <iframe id="videoPlayer" src="" allowfullscreen></iframe>
-
-    <div class="episode-list" id="episodeList"></div>
+  <button class="toggle-btn" onclick="toggleTheme()">Toggle Theme</button>
+  <header>
+    <img src="logo.png" alt="AnimeDash Logo">
+  </header>
+  <h1>Welcome to AnimeDash</h1>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search anime..." onkeyup="filterAnime()">
   </div>
+  <div class="anime-grid" id="animeGrid"></div>
 
   <script>
-    const episodeData = {
-      1: {
-        title: "Naruto",
-        episodes: [
-          { title: "Episode 1", url: "https://www.youtube.com/embed/JxS5E-kZc2s" },
-          { title: "Episode 2", url: "https://www.youtube.com/embed/UzHGjQe6l98" }
-        ]
-      },
-      2: {
-        title: "Death Note",
-        episodes: [
-          { title: "Episode 1", url: "https://www.youtube.com/embed/NlJZ-YgAt-c" },
-          { title: "Episode 2", url: "https://www.youtube.com/embed/tJZtOrm5uJ4" }
-        ]
-      }
-    };
+    const animes = [
+      { id: 1, title: "Naruto", image: "https://i.imgur.com/s1X3bNl.jpg" },
+      { id: 2, title: "Death Note", image: "https://i.imgur.com/nD0Gk0L.jpg" },
+      { id: 3, title: "Attack on Titan", image: "https://i.imgur.com/DwvXxJL.jpg" },
+      { id: 4, title: "One Punch Man", image: "https://i.imgur.com/0sM1J4j.jpg" }
+    ];
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const animeId = urlParams.get('anime');
-    const player = document.getElementById('videoPlayer');
-    const title = document.getElementById('animeTitle');
-    const epList = document.getElementById('episodeList');
+    const grid = document.getElementById('animeGrid');
 
-    function loadAnime(id) {
-      const anime = episodeData[id];
-      if (!anime) return title.textContent = 'Anime not found';
-
-      title.textContent = `${anime.title} - ${anime.episodes[0].title}`;
-      player.src = anime.episodes[0].url;
-
-      anime.episodes.forEach((ep, i) => {
-        const btn = document.createElement('div');
-        btn.className = 'ep-btn';
-        btn.textContent = `Ep ${i + 1}`;
-        btn.onclick = () => {
-          player.src = ep.url;
-          title.textContent = `${anime.title} - ${ep.title}`;
-        };
-        epList.appendChild(btn);
+    function loadAnimeList() {
+      grid.innerHTML = '';
+      animes.forEach(anime => {
+        const card = document.createElement('div');
+        card.className = 'anime-card';
+        card.innerHTML = `
+          <a href="player.html?anime=${anime.id}">
+            <img src="${anime.image}" alt="${anime.title}" />
+            <h3>${anime.title}</h3>
+          </a>
+        `;
+        grid.appendChild(card);
       });
     }
 
-    loadAnime(animeId);
+    function filterAnime() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.anime-card');
+      cards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = title.includes(search) ? '' : 'none';
+      });
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const isDark = body.style.backgroundColor === 'white';
+      body.style.backgroundColor = isDark ? '#0e0e0e' : 'white';
+      body.style.color = isDark ? '#ffffff' : '#000000';
+    }
+
+    loadAnimeList();
   </script>
 </body>
 </html>
