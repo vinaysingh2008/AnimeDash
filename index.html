@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnimeDash - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background-color: #0e0e0e; color: #fff; padding: 20px; }
+    header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; }
+    .logo { font-size: 28px; font-weight: bold; color: #00d8ff; }
+    .search input { padding: 10px; border: none; border-radius: 6px; width: 200px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+    .card { background-color: #1a1a1a; border-radius: 12px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.5); cursor: pointer; transition: transform 0.2s; }
+    .card:hover { transform: scale(1.03); }
+    .card img { width: 100%; height: 250px; object-fit: cover; }
+    .card-title { padding: 10px; font-size: 16px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">AnimeDash</div>
+    <div class="search">
+      <input type="text" placeholder="Search anime...">
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="card" onclick="location.href='player.html?anime=1'">
+      <img src="https://cdn.myanimelist.net/images/anime/10/47347.jpg" alt="Naruto">
+      <div class="card-title">Naruto</div>
+    </div>
+    <div class="card" onclick="location.href='player.html?anime=2'">
+      <img src="https://cdn.myanimelist.net/images/anime/5/17407.jpg" alt="Death Note">
+      <div class="card-title">Death Note</div>
+    </div>
+    <!-- Add more cards below -->
+  </div>
+</body>
+</html>
